@@ -20,10 +20,9 @@ OMDB_API_KEY = "9a0e251f"   # <- put your key here
 
 # ------------ LOAD DATA ----------
 movies_dict = pickle.load(open('Movies.pkl', 'rb'))
-if isinstance(movies_dict, pd.DataFrame):
-    movies = movies_dict
-else:
-    movies = pd.DataFrame(movies_dict)
+import pandas as pd
+movies_dict = pd.read_pickle('Movies.pkl')
+movies = movies_dict if isinstance(movies_dict, pd.DataFrame) else pd.DataFrame(movies_dict)
 
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 

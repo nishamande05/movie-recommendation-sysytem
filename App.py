@@ -43,21 +43,17 @@ def fetch_poster(title):
 # ------------ RECOMMEND ----------
 def recommend(movie):
     movie_index = movies[movies['title'] == movie].index[0]
-    distances = similarity.iloc[int(movie_index)]
-    movies_list = sorted(
-        list(enumerate(distances)),
-        reverse=True,
-        key=lambda x: x[1])[1:6]
+    movie_index = int(movie_index)
+    distances = similarity.values[movie_index]
+    movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
 
     recommended_movies = []
     recommended_posters = []
-
     for i in movies_list:
-        title = movies.iloc[i[0]].title
-        recommended_movies.append(title)
-        poster_url = fetch_poster(title)
-        recommended_posters.append(poster_url)
-
+        movie_id = movies.iloc[i[0]].movie_id
+        recommended_movies.append(movies.iloc[i[0]].title)
+        poster = fetch_poster(movie_id)
+        recommended_posters.append(poster)
     return recommended_movies, recommended_posters
 
 # ------------ STREAMLIT UI ----------

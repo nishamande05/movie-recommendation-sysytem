@@ -21,8 +21,7 @@ OMDB_API_KEY = "9a0e251f"   # <- put your key here
 # ------------ LOAD DATA ----------
 movies = pd.read_pickle('Movies.pkl')
 
-similarity = pickle.load(open('similarity.pkl', 'rb'))
-
+similarity = pd.read_pickle('similarity.pkl')
 # ------------ POSTER (OMDb) ----------
 # ------------ POSTER (OMDb) ----------
 def fetch_poster(title):

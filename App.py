@@ -44,7 +44,8 @@ def fetch_poster(title):
 def recommend(movie):
     movie_index = movies[movies['title'] == movie].index[0]
     movie_index = int(movie_index)
-    distances = similarity.values[movie_index]
+    distances = list(similarity.values[movie_index])
+    distances = [float(x) for x in distances]
     movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
 
     recommended_movies = []

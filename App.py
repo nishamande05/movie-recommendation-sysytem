@@ -2,12 +2,13 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
-import gdown
 from os import path
 
-# Download Movies.pkl
-if not path.exists("Movies.pkl"):
-    gdown.download(id="1_0XZ05RTFZLnvW1HHjn3gl9lz6en8q_R", output="Movies.pkl", quiet=False)
+OMDB_API_KEY = "9a0e251f"
+
+# LOAD DATA
+movies = pd.read_pickle('Movies.pkl')
+similarity = pickle.load(open('movie_list.pkl', 'rb'))
 
 # Download movie_list.pkl (similarity matrix)
 if not path.exists("movie_list.pkl"):
